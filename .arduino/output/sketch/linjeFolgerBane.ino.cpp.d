@@ -1,0 +1,36 @@
+C:\Users\Aaseb\Prosjekter\ZumoProsjekt\.arduino\output\sketch\linjeFolgerBane.ino.cpp.o: \
+ C:\Users\Aaseb\Prosjekter\ZumoProsjekt\.arduino\output\sketch\linjeFolgerBane.ino.cpp \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\libraries\Wire\src/Wire.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/Stream.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/Print.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/WString.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/Printable.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\FastGPIO/FastGPIO.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4Buttons.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Pushbutton/Pushbutton.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/Arduino.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/binary.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/WCharacter.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/HardwareSerial.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/Stream.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/USBAPI.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/Arduino.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/USBDesc.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\cores\arduino/USBCore.h \
+ C:\Users\Aaseb\AppData\Local\Arduino15\packages\arduino\hardware\avr\1.8.6\variants\leonardo/pins_arduino.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\USBPause/USBPause.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4Buzzer.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\PololuBuzzer\src/PololuBuzzer.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4Encoders.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4IMU.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4IRPulses.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4LCD.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\PololuHD44780/PololuHD44780.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4LineSensors.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/QTRSensors.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4Motors.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4OLED.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\PololuOLED\src/PololuSH1106Main.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\PololuOLED\src/PololuOLEDHelpers.h \
+ C:\Users\Aaseb\OneDrive\Dokumenter\Arduino\libraries\Zumo32U4\src/Zumo32U4ProximitySensors.h

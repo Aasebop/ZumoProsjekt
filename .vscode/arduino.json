@@ -1,6 +1,7 @@
 {
-    "board": "arduino:avr:uno",
+    "board": "pololu-a-star:avr:a-star32U4",
     "programmer": "avrisp",
     "output": ".arduino/output",
-    "sketch": "speedometer/speedometer.ino"
+    "sketch": "linjeFolgerBane/linjeFolgerBane.ino",
+    "port": "COM3"
 }
