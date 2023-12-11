@@ -19,7 +19,7 @@ Zumo32U4ButtonB buttonB;
 Zumo32U4OLED oled;
 #define NUM_SENSORS 5 // 5 Linjefølger-sensorer
 
-// linjefølger
+// Linjefølger
 unsigned int lineSensorArray[NUM_SENSORS]; // Array for linjesensorverdiene
 const uint16_t normalSpeed = 250;          // Normal hastighet til bilen
 int16_t lastError = 0;                     // Variabel for feilmargin
@@ -28,69 +28,74 @@ int speedLeft = 0;                         // venstre hjulhastigehet
 int speedRight = 0;                        // høyre hjulhastighet
 float lineMultiplier = 0;                  // tallet hjulene skal ganges med for linjefølging
 
-// Variabler for kryss
+// Kryss
 bool crossRoad = false;         // Er det kjørt forbi kryss? ja/nei
-int16_t numCrossRoads = 0;      // Large antallet kryss kjørt fobi
-int16_t threshold = 200;        // Hva som regnes som mørk linje
+int16_t numCrossRoads = 0;      // Lagre antallet kryss kjørt fobi
+int16_t threshold = 200;        // Hva som regnes som mørk linje for linjesesnorene
 int crossDetectionDelay = 2500; // tid som må gå fra et kryss er registrert til neste kan registreres
+unsigned long lastCrossRoads;   // tiden ved siste kryss
 
-// switch variabler
+// switch case crossAction
 int switchMode = 99;      // casen til switchcase ved kryssbasert kjøring
 bool inOtherCase = false; // sjekker om man er under opperasjon av en annen case
-int sensorZum;                // summen av alle sensorene
-unsigned long lastCrossRoads; // tiden ved siste kryss
 
-// printing
-int maxValue;                // høyeste verdi av valgfri ting
+// highestValue() og lineSensorZum()
+int sensorZum; // summen av alle sensorene
+int maxValue;  // høyeste verdi av valgfri ting
 
 // Banken
 float bankBalace = 0.0;
 
+// Buzzer
+unsigned long buzzerStartTime = 0; // lagrer siste buzzer action
+
 // Kalibrere sensorene
-#line 49 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 52 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void calibrate();
-#line 67 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 70 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void highestValue(int value);
-#line 75 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 78 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 int lineSensorZum();
-#line 87 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 90 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void updateSensors();
-#line 94 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 97 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void lineFollowPID();
-#line 108 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 111 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void PID();
-#line 126 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 129 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void lineFollowP();
-#line 135 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 138 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 bool gapIsDetected();
-#line 150 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 153 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void countCrossRoads();
-#line 179 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 178 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void normalDriving();
-#line 187 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 186 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void CrossActions();
-#line 261 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 260 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void CrossPrint();
-#line 269 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 268 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void deposit(float amount);
-#line 274 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 273 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void withdraw(float amount);
-#line 293 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 292 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+void honk();
+#line 313 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 bool taxiOrder();
-#line 300 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 320 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void driveTaxi();
-#line 409 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 430 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void setup();
-#line 418 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 439 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void loop();
-#line 49 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
+#line 52 "C:\\Users\\Aaseb\\Prosjekter\\ZumoProsjekt\\linjeFolgerBane\\linjeFolgerBane.ino"
 void calibrate()
 {
   oled.clear();
   oled.gotoXY(0, 0);
   oled.print("calibrate");
   delay(500);
-  for (int i = 0; i < 118; i++)
+  for (int i = 0; i < 118; i++) // 118 får bilen til å treffe linja nokså bent på der vi satt den
   {
     if (i < 118)
     {
@@ -101,16 +106,16 @@ void calibrate()
   }
   motors.setSpeeds(0, 0);
 }
-
-void highestValue(int value) // lagrer høyeste verdi av det du putter i 1. arg.
-{                           // Til bruk i lineSensorZum()
+// lagrer høyeste verdi av det du putter i 1. arg.
+void highestValue(int value)
+{ // Til bruk i lineSensorZum()
   if (value > maxValue)
   {
     maxValue = value;
   }
 }
-
-int lineSensorZum() // gir ut summen av alle sensorene. lettere å jobb med enn 5 enkelt sensor
+// gir ut summen av alle sensorene. lettere å jobb med enn 5 enkelt sensor
+int lineSensorZum()
 {
   sensorZum = 0;
   for (uint8_t i = 0; i < 5; i++)
@@ -121,7 +126,7 @@ int lineSensorZum() // gir ut summen av alle sensorene. lettere å jobb med enn 
   return sensorZum;
 }
 
-// leser posisjonen til linjefølger
+// leser posisjonen til linjefølger og leser sensorsummen
 void updateSensors()
 {
   position = lineSensors.readLine(lineSensorArray);
@@ -134,12 +139,12 @@ void lineFollowPID()
   // leser sensor til linjefølger
   int16_t position = lineSensors.readLine(lineSensorArray);
   int16_t error = position - 2000;
-  int16_t speedDifference = error / 4 + 8 * (error - lastError); // Proporsjonal term: error / 4 - Dette er en enkel proporsjonal komponent hvor feilen er delt på 4. Dette betyr at hastighetsforskjellen er proporsjonal med feilen, men skalert ned med 4.
+  int16_t speedDifference = error / 4 + 3 * (error - lastError); // Proporsjonal term: error / 4 - Dette er en enkel proporsjonal komponent hvor feilen er delt på 4. Dette betyr at hastighetsforskjellen er proporsjonal med feilen, men skalert ned med 4.
   // Derivativ term: 6 * (error - lastError) - Dette er en derivativ komponent som er proporsjonal med endringen i feil over tid (derivasjon av feilen). Det multipliseres med 6 for å justere vektingen av denne termen.
   int16_t leftSpeed = normalSpeed + speedDifference;
   int16_t rightSpeed = normalSpeed - speedDifference;
-  leftSpeed = constrain(leftSpeed, 0, normalSpeed) + 50; // Constraining sørger for at hastigheten til julene ikke går under 0 eller overstiger normalSpeed
-  rightSpeed = constrain(rightSpeed, 0, normalSpeed) + 50;
+  leftSpeed = constrain(leftSpeed, 0, normalSpeed); // Constraining sørger for at hastigheten til julene ikke går under 0 eller overstiger normalSpeed
+  rightSpeed = constrain(rightSpeed, 0, normalSpeed);
   motors.setSpeeds(leftSpeed, rightSpeed); // Setter farta til motorene
 }
 // Med I
@@ -150,7 +155,7 @@ void PID()
   int16_t position = lineSensors.readLine(lineSensorArray);
   int16_t error = position - 2000;
   int16_t integral = 0.005 * error;                                         // Integral term
-  int16_t speedDifference = error / 4 + 8 * (error - lastError) + integral; // Proporsjonal term: error / 4 - Dette er en enkel proporsjonal komponent hvor feilen er delt på 4. Dette betyr at hastighetsforskjellen er proporsjonal med feilen, men skalert ned med 4.
+  int16_t speedDifference = error / 4 + 3 * (error - lastError) + integral; // Proporsjonal term: error / 4 - Dette er en enkel proporsjonal komponent hvor feilen er delt på 4. Dette betyr at hastighetsforskjellen er proporsjonal med feilen, men skalert ned med 4.
   // Derivativ term: 6 * (error - lastError) - Dette er en derivativ komponent som er proporsjonal med endringen i feil over tid (derivasjon av feilen). Det multipliseres med 6 for å justere vektingen av denne termen.
   int16_t leftSpeed = normalSpeed + speedDifference;
   int16_t rightSpeed = normalSpeed - speedDifference;
@@ -191,10 +196,6 @@ void countCrossRoads()
   {
     switchMode = numCrossRoads; // setter hvilken sving det er til switch casen
     numCrossRoads++;            // setter neste kryss
-    // Seriell kommunikasjon brukt til testing
-    Serial.print("Cross Count : ");
-    Serial.println(numCrossRoads);
-    CrossPrint();
     crossDetectionDelay = 2500; // setter CDD tilbake til normal
 
     if (numCrossRoads == 4)
@@ -218,7 +219,7 @@ void normalDriving()
 {
   updateSensors();   // Oppdaterer linjesensorene til å lese posisjonen
   countCrossRoads(); // Tell kryss
-  CrossActions();    // Kjør med gitte caser for kryssene
+  CrossActions();    // Kjør med gitte switchcaser for kryssene
 }
 
 // kjøremodus for sving basert kjøring. Går inn i case når den møter kryss.
@@ -327,6 +328,27 @@ void withdraw(float amount)
     oled.print(bankBalace);
   }
 }
+// Tuter to ganger
+void honk()
+{
+  const int interval = 300; // Intervallet mellom tutene
+  const int freq = 400;     // Frekvensen tutene er på
+  bool firstHonk = false;
+  unsigned long currentBuzzerMillis = millis(); // Lagre nåværende tidspunkt
+
+  if (!firstHonk)
+  {
+    buzzer.playFrequency(freq, 100, 15); // første tut
+    buzzerStartTime = currentBuzzerMillis;
+    firstHonk = true;
+  }
+  else if (millis()- currentBuzzerMillis >= interval && firstHonk)
+  {
+    buzzer.playFrequency(freq, 250, 15);
+    firstHonk = false; // Setter tilbake til false for neste kjøring
+  }
+}
+
 // Taxi bestillt? true/false. til bruk i driveTaxi()
 bool taxiOrder()
 {
@@ -379,6 +401,7 @@ void driveTaxi()
     if (randomCrossPickup == numCrossRoads) // Sjekk om man har annkommet krysset for å hente passasjeren
     {
       unsigned long pickupTime = millis();   // Tiden passasjeren blir plukket opp
+      honk();
       while ((millis() - pickupTime) < 5000) // Stop i 5 sek for å plukke opp passasjeren
       {
         crossDetectionDelay = 7300; // Øker delayet i countCrossRoads så den ikke teller krysset den stopper på som nytt kryss igjen når den kjører videre
